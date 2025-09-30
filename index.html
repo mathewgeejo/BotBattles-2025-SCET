@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BotBattles AI Chatbot - TinkerHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <h1>⚡ BotBattles AI</h1>
+                <p class="tagline">TinkerHub Edition</p>
+            </div>
+            <div class="token-display">
+                <div class="token-stat">
+                    <span class="label">Tokens Used:</span>
+                    <span class="value" id="tokensUsed">0</span>
+                </div>
+                <div class="token-stat">
+                    <span class="label">Total Cost:</span>
+                    <span class="value" id="totalCost">$0.00</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- About BotBattles -->
+        <div class="about-section" id="aboutSection">
+            <button class="toggle-about" onclick="toggleAbout()">
+                <span id="aboutToggleIcon">▼</span> About BotBattles
+            </button>
+            <div class="about-content" id="aboutContent">
+                <h2>What is BotBattles?</h2>
+                <p>BotBattles is an exciting chatbot building competition where developers showcase their creativity and technical skills by creating innovative conversational AI experiences. Participants compete to build the most engaging, intelligent, and useful chatbots.</p>
+                <ul>
+                    <li><strong>Innovation:</strong> Push the boundaries of conversational AI</li>
+                    <li><strong>Creativity:</strong> Design unique personalities and interactions</li>
+                    <li><strong>Competition:</strong> Compete with developers worldwide</li>
+                    <li><strong>Learning:</strong> Master AI integration and UX design</li>
+                </ul>
+                <p class="powered-by">Powered by TinkerHub - Building tomorrow's innovators today</p>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Personality Selector -->
+            <div class="sidebar">
+                <h3>Choose Your AI Companion</h3>
+                <div class="personality-list">
+                    <button class="personality-btn active" data-personality="cyber-hacker">
+                        <span class="personality-icon">🔮</span>
+                        <span class="personality-name">Cyber Punk Hacker</span>
+                    </button>
+                    <button class="personality-btn" data-personality="time-traveler">
+                        <span class="personality-icon">⏰</span>
+                        <span class="personality-name">Time Traveler</span>
+                    </button>
+                    <button class="personality-btn" data-personality="cosmic-philosopher">
+                        <span class="personality-icon">🌌</span>
+                        <span class="personality-name">Cosmic Philosopher</span>
+                    </button>
+                    <button class="personality-btn" data-personality="detective-noir">
+                        <span class="personality-icon">🕵️</span>
+                        <span class="personality-name">Detective Noir</span>
+                    </button>
+                    <button class="personality-btn" data-personality="pirate-captain">
+                        <span class="personality-icon">🏴‍☠️</span>
+                        <span class="personality-name">Pirate Captain</span>
+                    </button>
+                    <button class="personality-btn" data-personality="quantum-scientist">
+                        <span class="personality-icon">⚛️</span>
+                        <span class="personality-name">Quantum Scientist</span>
+                    </button>
+                    <button class="personality-btn" data-personality="dystopian-rebel">
+                        <span class="personality-icon">🔥</span>
+                        <span class="personality-name">Dystopian Rebel</span>
+                    </button>
+                    <button class="personality-btn" data-personality="zen-master">
+                        <span class="personality-icon">🧘</span>
+                        <span class="personality-name">Zen Master</span>
+                    </button>
+                </div>
+                <div class="personality-description" id="personalityDescription">
+                    A tech-savvy hacker from a neon-lit future, speaking in code and cyber slang.
+                </div>
+            </div>
+
+            <!-- Chat Area -->
+            <div class="chat-container">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot-message">
+                        <div class="message-avatar">🔮</div>
+                        <div class="message-content">
+                            <div class="message-text">Greetings, netrunner. The matrix awaits your query. What secrets of the digital realm do you seek?</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input Area -->
+                <div class="chat-input-area">
+                    <div class="input-container">
+                        <input 
+                            type="text" 
+                            id="messageInput" 
+                            placeholder="Type your message..."
+                            autocomplete="off"
+                        >
+                        <button id="sendButton" class="send-btn">
+                            <span class="send-icon">▶</span>
+                        </button>
+                    </div>
+                    <div class="api-key-container" id="apiKeyContainer">
+                        <input 
+                            type="password" 
+                            id="apiKeyInput" 
+                            placeholder="Enter your Groq API key"
+                        >
+                        <button id="saveApiKey" class="save-api-btn">Save Key</button>
+                    </div>
+                    <div class="api-key-info">
+                        Get your free API key at <a href="https://console.groq.com" target="_blank">console.groq.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
