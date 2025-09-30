@@ -44,6 +44,76 @@
             </div>
         </div>
 
+        <!-- AI Settings -->
+        <div class="settings-section" id="settingsSection">
+            <button class="toggle-settings" onclick="toggleSettings()">
+                <span id="settingsToggleIcon">▼</span> AI Settings & Controls
+            </button>
+            <div class="settings-content" id="settingsContent">
+                <div class="settings-grid">
+                    <div class="setting-group">
+                        <label for="maxTokens">Max Response Tokens:</label>
+                        <input type="range" id="maxTokens" min="50" max="2000" value="500" class="slider">
+                        <span class="slider-value" id="maxTokensValue">500</span>
+                    </div>
+                    <div class="setting-group">
+                        <label for="temperature">Creativity (Temperature):</label>
+                        <input type="range" id="temperature" min="0" max="20" value="8" class="slider">
+                        <span class="slider-value" id="temperatureValue">0.8</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Help & Tips -->
+        <div class="help-section" id="helpSection">
+            <button class="toggle-help" onclick="toggleHelp()">
+                <span id="helpToggleIcon">▼</span> Help & Prompting Tips
+            </button>
+            <div class="help-content" id="helpContent">
+                <div class="help-tabs">
+                    <button class="help-tab active" onclick="showHelpTab('tokens')">What are Tokens?</button>
+                    <button class="help-tab" onclick="showHelpTab('prompting')">Prompting Tips</button>
+                    <button class="help-tab" onclick="showHelpTab('personalities')">Using Personalities</button>
+                </div>
+                
+                <div class="help-tab-content" id="tokensHelp">
+                    <h3>Understanding Tokens</h3>
+                    <p><strong>What are tokens?</strong> Tokens are the basic units that AI models use to process text. They can be words, parts of words, or even punctuation marks.</p>
+                    <ul>
+                        <li><strong>Input Tokens:</strong> The text you send (your prompt + conversation history)</li>
+                        <li><strong>Output Tokens:</strong> The AI's response text</li>
+                        <li><strong>Pricing:</strong> You pay for both input and output tokens (~$0.50 per 1M tokens)</li>
+                        <li><strong>Example:</strong> "Hello world!" ≈ 3 tokens</li>
+                    </ul>
+                    <p><strong>Max Response Tokens:</strong> Controls how long the AI's reply can be. Higher = longer responses but more cost.</p>
+                </div>
+                
+                <div class="help-tab-content" id="promptingHelp" style="display: none;">
+                    <h3>Effective Prompting</h3>
+                    <ul>
+                        <li><strong>Be Specific:</strong> "Explain quantum physics" → "Explain quantum entanglement to a high school student"</li>
+                        <li><strong>Set Context:</strong> "I'm a beginner programmer learning Python..."</li>
+                        <li><strong>Ask Follow-ups:</strong> Build on previous responses for deeper conversations</li>
+                        <li><strong>Use Examples:</strong> "Write a poem like Robert Frost would"</li>
+                        <li><strong>Set Tone:</strong> "Explain this formally" vs "Explain this casually"</li>
+                        <li><strong>Request Format:</strong> "List 5 points" or "Write in bullet points"</li>
+                    </ul>
+                </div>
+                
+                <div class="help-tab-content" id="personalitiesHelp" style="display: none;">
+                    <h3>Making the Most of Personalities</h3>
+                    <ul>
+                        <li><strong>Match Your Need:</strong> Use Detective for analysis, Zen Master for philosophy, Scientist for technical topics</li>
+                        <li><strong>Fresh Start:</strong> Each personality switch clears chat history for a clean conversation</li>
+                        <li><strong>Play Along:</strong> Engage with their unique speaking style and perspective</li>
+                        <li><strong>Experiment:</strong> Ask the same question to different personalities for varied insights</li>
+                        <li><strong>Context Matters:</strong> Each personality remembers your conversation until you switch</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
         <!-- Main Content -->
         <div class="main-content">
             <!-- Personality Selector -->

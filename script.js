@@ -86,6 +86,13 @@ function initializeApp() {
         btn.addEventListener('click', () => switchPersonality(btn.dataset.personality));
     });
 
+    // Settings sliders
+    document.getElementById('maxTokens').addEventListener('input', updateSliderValues);
+    document.getElementById('temperature').addEventListener('input', updateSliderValues);
+    
+    // Initialize slider values
+    updateSliderValues();
+
     // Update token display
     updateTokenDisplay();
 }
@@ -131,6 +138,10 @@ function switchPersonality(personalityId) {
     
     // Clear conversation history for new personality
     conversationHistory = [];
+    
+    // Clear chat messages from DOM
+    const chatMessages = document.getElementById('chatMessages');
+    chatMessages.innerHTML = '';
     
     // Add greeting message
     const greeting = getPersonalityGreeting(personalityId);
@@ -222,10 +233,10 @@ async function callGeminiAPI(userMessage) {
                     }]
                 }],
                 generationConfig: {
-                    temperature: 0.8,
+                    temperature: parseFloat(document.getElementById('temperature').value) / 10,
                     topK: 40,
                     topP: 0.95,
-                    maxOutputTokens: 500,
+                    maxOutputTokens: parseInt(document.getElementById('maxTokens').value),
                 }
             })
         });
@@ -356,5 +367,65 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
-// Make toggleAbout available globally
+// Settings and Help functions
+function toggleSettings() {
+    const content = document.getElementById('settingsContent');
+    const icon = document.getElementById('settingsToggleIcon');
+    
+    if (content.classList.contains('expanded')) {
+        content.classList.remove('expanded');
+        icon.textContent = '▼';
+    } else {
+        content.classList.add('expanded');
+        icon.textContent = '▲';
+    }
+}
+
+function toggleHelp() {
+    const content = document.getElementById('helpContent');
+    const icon = document.getElementById('helpToggleIcon');
+    
+    if (content.classList.contains('expanded')) {
+        content.classList.remove('expanded');
+        icon.textContent = '▼';
+    } else {
+        content.classList.add('expanded');
+        icon.textContent = '▲';
+    }
+}
+
+function showHelpTab(tabName) {
+    // Hide all tab contents
+    document.querySelectorAll('.help-tab-content').forEach(content => {
+        content.style.display = 'none';
+    });
+    
+    // Remove active class from all tabs
+    document.querySelectorAll('.help-tab').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // Show selected tab content
+    document.getElementById(tabName + 'Help').style.display = 'block';
+    
+    // Add active class to clicked tab
+    event.target.classList.add('active');
+}
+
+function updateSliderValues() {
+    // Update max tokens display
+    const maxTokensSlider = document.getElementById('maxTokens');
+    const maxTokensValue = document.getElementById('maxTokensValue');
+    maxTokensValue.textContent = maxTokensSlider.value;
+    
+    // Update temperature display
+    const temperatureSlider = document.getElementById('temperature');
+    const temperatureValue = document.getElementById('temperatureValue');
+    temperatureValue.textContent = (temperatureSlider.value / 10).toFixed(1);
+}
+
+// Make functions available globally
 window.toggleAbout = toggleAbout;
+window.toggleSettings = toggleSettings;
+window.toggleHelp = toggleHelp;
+window.showHelpTab = showHelpTab;

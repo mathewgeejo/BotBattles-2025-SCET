@@ -489,3 +489,232 @@ body {
         max-width: 85%;
     }
 }
+
+/* Settings Section */
+.settings-section {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.toggle-settings {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.toggle-settings:hover {
+    background: var(--hover-bg);
+}
+
+#settingsToggleIcon {
+    transition: transform 0.3s;
+}
+
+.settings-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    padding: 0 2rem;
+}
+
+.settings-content.expanded {
+    max-height: 300px;
+    padding: 0 2rem 1.5rem 2rem;
+}
+
+.settings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.setting-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.setting-group label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.slider {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--bg-tertiary);
+    outline: none;
+    -webkit-appearance: none;
+    margin: 0.5rem 0;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--text-primary);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.slider::-webkit-slider-thumb:hover {
+    background: var(--accent-secondary);
+}
+
+.slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--text-primary);
+    cursor: pointer;
+    border: none;
+    transition: background 0.2s;
+}
+
+.slider::-moz-range-thumb:hover {
+    background: var(--accent-secondary);
+}
+
+.slider-value {
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    background: var(--bg-tertiary);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    text-align: center;
+    min-width: 60px;
+}
+
+/* Help Section */
+.help-section {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.toggle-help {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.toggle-help:hover {
+    background: var(--hover-bg);
+}
+
+#helpToggleIcon {
+    transition: transform 0.3s;
+}
+
+.help-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    padding: 0 2rem;
+}
+
+.help-content.expanded {
+    max-height: 600px;
+    padding: 0 2rem 1.5rem 2rem;
+}
+
+.help-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+.help-tab {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.help-tab:hover {
+    background: var(--hover-bg);
+    color: var(--text-primary);
+}
+
+.help-tab.active {
+    background: var(--active-bg);
+    color: var(--text-primary);
+}
+
+.help-tab-content {
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+.help-tab-content h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.help-tab-content p {
+    margin-bottom: 1rem;
+}
+
+.help-tab-content ul {
+    list-style: none;
+    margin: 1rem 0;
+}
+
+.help-tab-content ul li {
+    padding: 0.5rem 0;
+    border-left: 2px solid var(--accent-secondary);
+    padding-left: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.help-tab-content ul li strong {
+    color: var(--text-primary);
+}
+
+/* Responsive adjustments for new sections */
+@media (max-width: 768px) {
+    .settings-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .help-tabs {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+    
+    .help-tab {
+        text-align: left;
+    }
+}
