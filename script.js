@@ -52,13 +52,13 @@ const personalities = {
 
 // State management
 let currentPersonality = 'cyber-hacker';
-let apiKey = localStorage.getItem('groq_api_key') || '';
+let apiKey = localStorage.getItem('gemini_api_key') || 'AIzaSyDZZzILOKOr-2lS_ngJ3n8MZCJmcnH2hyw';
 let conversationHistory = [];
 let totalTokensUsed = 0;
 let totalCost = 0;
 
-// Constants for token pricing (Groq pricing - approximate)
-const TOKEN_COST_PER_1M = 0.10; // $0.10 per 1M tokens (approximate)
+// Constants for token pricing (Gemini pricing - approximate)
+const TOKEN_COST_PER_1M = 0.50; // $0.50 per 1M tokens (approximate for Gemini Pro)
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
@@ -108,7 +108,7 @@ function saveApiKey() {
     apiKey = keyInput.value.trim();
     
     if (apiKey) {
-        localStorage.setItem('groq_api_key', apiKey);
+        localStorage.setItem('gemini_api_key', apiKey);
         document.getElementById('apiKeyContainer').style.display = 'none';
         addSystemMessage('API key saved successfully! You can now start chatting.');
     } else {
@@ -159,7 +159,7 @@ async function sendMessage() {
     if (!message) return;
     
     if (!apiKey) {
-        addSystemMessage('Please enter your Groq API key first.');
+        addSystemMessage('Please enter your Gemini API key first.');
         document.getElementById('apiKeyContainer').style.display = 'flex';
         return;
     }
@@ -175,7 +175,7 @@ async function sendMessage() {
     
     // Send to API
     try {
-        const response = await callGroqAPI(message);
+        const response = await callGeminiAPI(message);
         removeTypingIndicator(typingId);
         addBotMessage(response.message, personalities[currentPersonality].icon);
         
@@ -191,34 +191,42 @@ async function sendMessage() {
     }
 }
 
-async function callGroqAPI(userMessage) {
+async function callGeminiAPI(userMessage) {
     const personality = personalities[currentPersonality];
     
-    // Build messages array
-    const messages = [
-        {
-            role: 'system',
-            content: personality.systemPrompt
-        },
-        ...conversationHistory,
-        {
-            role: 'user',
-            content: userMessage
+    // Build the conversation context for Gemini
+    let fullPrompt = personality.systemPrompt + '\n\n';
+    
+    // Add conversation history
+    conversationHistory.forEach(msg => {
+        if (msg.role === 'user') {
+            fullPrompt += `Human: ${msg.content}\n\n`;
+        } else {
+            fullPrompt += `Assistant: ${msg.content}\n\n`;
         }
-    ];
+    });
+    
+    // Add current user message
+    fullPrompt += `Human: ${userMessage}\n\nAssistant:`;
     
     try {
-        const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${apiKey}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                model: 'llama-3.3-70b-versatile',
-                messages: messages,
-                temperature: 0.8,
-                max_tokens: 500
+                contents: [{
+                    parts: [{
+                        text: fullPrompt
+                    }]
+                }],
+                generationConfig: {
+                    temperature: 0.8,
+                    topK: 40,
+                    topP: 0.95,
+                    maxOutputTokens: 500,
+                }
             })
         });
         
@@ -228,8 +236,13 @@ async function callGroqAPI(userMessage) {
         }
         
         const data = await response.json();
-        const assistantMessage = data.choices[0].message.content;
-        const tokensUsed = data.usage?.total_tokens || 0;
+        
+        if (!data.candidates || data.candidates.length === 0) {
+            throw new Error('No response generated');
+        }
+        
+        const assistantMessage = data.candidates[0].content.parts[0].text;
+        const tokensUsed = data.usageMetadata?.totalTokenCount || 0;
         
         // Update conversation history
         conversationHistory.push({

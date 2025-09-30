@@ -1,6 +1,6 @@
 # BotBattles AI Chatbot - TinkerHub Edition 🤖⚡
 
-A stunning monochrome chatbot with personality switching, powered by Groq's LLM API. Built for the BotBattles 2025 competition at SCET.
+A stunning monochrome chatbot with personality switching, powered by Google's Gemini API. Built for the BotBattles 2025 competition at SCET.
 
 ## ✨ Features
 
@@ -24,7 +24,7 @@ A stunning monochrome chatbot with personality switching, powered by Groq's LLM 
 ### Prerequisites
 
 - A modern web browser (Chrome, Firefox, Safari, Edge)
-- A Groq API key (free at [console.groq.com](https://console.groq.com))
+- A Gemini API key (free at [Google AI Studio](https://aistudio.google.com/app/apikey))
 
 ### Installation
 
@@ -46,14 +46,14 @@ A stunning monochrome chatbot with personality switching, powered by Groq's LLM 
    start index.html
    ```
 
-3. Enter your Groq API key when prompted
+3. Enter your Gemini API key when prompted
 
-### Getting a Groq API Key
+### Getting a Gemini API Key
 
-1. Visit [console.groq.com](https://console.groq.com)
-2. Sign up for a free account
-3. Navigate to API Keys section
-4. Generate a new API key
+1. Visit [Google AI Studio](https://aistudio.google.com/app/apikey)
+2. Sign in with your Google account
+3. Click "Create API Key"
+4. Choose your project or create a new one
 5. Copy and paste it into the chatbot interface
 
 ## 🎮 Usage
@@ -77,15 +77,15 @@ Powered by TinkerHub - Building tomorrow's innovators today.
 ## 🛠️ Technology Stack
 
 - **Frontend**: Pure HTML5, CSS3, JavaScript (ES6+)
-- **AI Model**: Groq's Llama 3.3 70B Versatile
-- **API**: Groq OpenAI-compatible API
+- **AI Model**: Google Gemini 2.0 Flash Experimental
+- **API**: Google Gemini REST API
 - **Storage**: LocalStorage for API key persistence
 - **Design**: Minimal monochrome theme with TinkerHub aesthetics
 
 ## 📊 Token Pricing
 
-This chatbot uses Groq's API which offers competitive pricing:
-- Approximately $0.10 per 1M tokens
+This chatbot uses Google's Gemini API which offers competitive pricing:
+- Approximately $0.50 per 1M tokens
 - Real-time cost tracking displayed in the UI
 - Efficient context management to minimize costs
 
@@ -101,7 +101,7 @@ This chatbot uses Groq's API which offers competitive pricing:
 
 - API keys are stored locally in your browser
 - No server-side processing of conversations
-- Direct API communication with Groq
+- Direct API communication with Google Gemini
 - Your data never touches our servers
 
 ## 📝 License
@@ -123,7 +123,7 @@ Created by [mathewgeejo](https://github.com/mathewgeejo) for BotBattles 2025 @ S
 ## 🙏 Acknowledgments
 
 - TinkerHub for organizing BotBattles
-- Groq for providing the AI infrastructure
+- Google for providing the Gemini AI infrastructure
 - SCET for hosting the competition
 
 ---

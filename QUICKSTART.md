@@ -1,11 +1,11 @@
 # BotBattles AI Chatbot - Quick Start Guide
 
-## Getting Your Groq API Key
+## Getting Your Gemini API Key
 
-1. Visit [https://console.groq.com](https://console.groq.com)
-2. Sign up for a free account (no credit card required)
-3. Navigate to "API Keys" in the dashboard
-4. Click "Create API Key"
+1. Visit [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
+2. Sign in with your Google account
+3. Click "Create API Key"
+4. Choose your project or create a new one
 5. Copy your new API key
 6. Paste it into the chatbot interface
 
@@ -20,7 +20,7 @@
 ### Token Tracking
 - See real-time token usage in the top-right corner
 - Monitor costs as you chat
-- Groq offers competitive pricing (~$0.10 per 1M tokens)
+- Gemini offers competitive pricing (~$0.50 per 1M tokens)
 
 ### About BotBattles
 - Click "▼ About BotBattles" to learn about the competition
@@ -63,9 +63,9 @@ An enlightened master who speaks in koans and riddles. Peaceful, patient, and fi
 
 ## Troubleshooting
 
-### "Please enter your Groq API key first"
-- You need to enter a valid Groq API key
-- Get one free at [console.groq.com](https://console.groq.com)
+### "Please enter your Gemini API key first"
+- You need to enter a valid Gemini API key
+- Get one free at [Google AI Studio](https://aistudio.google.com/app/apikey)
 
 ### "Error: API request failed"
 - Check if your API key is valid
@@ -81,14 +81,14 @@ An enlightened master who speaks in koans and riddles. Peaceful, patient, and fi
 
 - Your API key is stored locally in your browser
 - No conversations are stored on any server
-- Direct communication with Groq's API
+- Direct communication with Gemini's API
 - Your data never touches our servers
 
 ## For Developers
 
 ### Tech Stack
 - Pure HTML/CSS/JavaScript (no build process needed)
-- Groq API (OpenAI-compatible)
+- Google Gemini API
 - LocalStorage for persistence
 - Responsive design with CSS Grid/Flexbox
 
